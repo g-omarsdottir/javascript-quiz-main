@@ -1,24 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quick Quiz</title>
-    <link rel="stylesheet" href="app.css">
+    <meta name="description" content="Rock, Paper, Scissors, Lizard, Spock - Online Game">
+    <meta name="keywords"
+        content="rock, paper, scissors, lizard, spock, big bang theory game, easy game, game, play game, online game">
+    <meta name="author" content="Gudrun Omarsdottir">
+    <title>RPSLS - Game on!</title>
+ 
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
     <div class="container">
-        <div id="home" class="flex-center flex-column">
-            <h1>Quick Quiz</h1>
-            <a class="btn" href="/game.html">Play</a>
-            <a class="btn" href="/highscores.html">High Scores</a>
-        </div>
+        <!-- Header -->
+            <header>
+                <h1>Rock, Paper, Scissors, Lizard, Spock <span>- Game</span></h1>
+            </header>
+
+            <!-- Main content -->
+            <main>
+                <div id="landing-section">
+                        <div class="box">
+                        
+                            <h2>Welcome to a game of Rock, Paper, Scissors, Lizard, Spock!</h2> 
+                            
+                            <div>
+                            
+                                <!-- Buttons to Toggle to show and hide for mobile version. Hidden in Desktop version -->
+                                
+                                <button id="introduction-button" class="dropbtn" type="button"><h3>About this Game</h3></button>
+                                
+                                <div id="introduction" class="dropdown-content box">  
+                                
+                                    <p>The game Rock, Paper, Scissors, Lizard, Spock, often referred to as the RPSLS-Game for short, is based on the old classic <a href="https://en.wikipedia.org/wiki/Rock_paper_scissors" target="_blank"
+                                    rel="noopener"
+                                    aria-label="Click here to read more about the origin of the game (opens in a new tab)">"Rock, Paper, Scissors" game</a>, 
+                                    but has the twist of two added game variables, a Lizard and Spock.</p> 
+                                    <p>The RPSLS-Game gained popularity after being played on <a
+                                    href="https://bigbangtheory.fandom.com/wiki/Rock,_Paper,_Scissors,_Lizard,_Spock"
+                                    target="_blank"
+                                    rel="noopener"
+                                    aria-label="Click here to read more about the game on the TV sitcom Big Bang Theory  (opens in a new tab)"
+                                    >the TV sitcom The Big Bang Theory.</a
+                                    ></p> 
+                                    <p>You can play this game with friends using hand gestures, or dive right in and play it here against the computer.</p>
+                                </div>
+                        
+                            </div>
+                        </div>
+                        
+                        <div>
+                        
+                            <button id="instructions-button" class="dropbtn" type="button"><h3>How to Play this Game:</h3></button>
+                            
+                            <div id="instructions" class="dropdown-content dropdown box column">
+                                <p>Choose one of the five options, Rock, Paper, Scissors, Lizard, or Spock by clicking on the appropriate button.</p>
+                                <p>Simultaniously, the computer's choice will be randomly generated.</p>
+                                <p>If you win, 1 point will be added to your score.</p>
+                                <p>If both players choose the same variable, it's a tie. Even though everybody wins, you will not gain a point.</p>
+                                <p>If you lose, don't panic, you will not lose a point.</p>
+                                <p>After you have won 10 rounds, you will become the ultimate champion.</p>
+                                <p>Each option can beat or be beaten by two other options based on the game rules.</p>
+                            </div>
+                        </div>
+
+                    <div>
+                        
+                        <button id="rules-button" class="dropbtn" type="button"><h3>Game Rules:</h3></button>
+                        
+                        <div id="rules" class="dropdown-content box column">
+                            <ul>
+                            <li>Scissors cuts Paper</li>
+                            <li>Paper covers Rock</li>
+                            <li>Rock crushes Lizard</li>
+                            <li>Lizard poisons Spock</li>
+                            <li>Spock smashes Scissors</li>
+                            <li>Scissors decapitates Lizard</li>
+                            <li>Lizard eats Paper</li>
+                            <li>Paper disproves Spock</li>
+                            <li>Spock vaporizes Rock</li>
+                            <li>(and as it always has) Rock crushes Scissors</li>
+                            </ul>
+                        </div>
+                    </div>
+                
+    
+                    <!-- USERNAME -->
+                        <div>
+                            <p id="username">username</p>
+                        </div>
+                    <div class="box">
+                        <div class="username-box">
+                            <form>
+                            <label for="username-input">Username: </label>
+                            <input type="text" placeholder="Enter Username" name="username" id="username-input" required>
+                            <br>
+                            <input type="submit" id="submit" class="play-button" value="Submit & Play Game">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="game-section">
+
+                    <!-- Scoreboard displaying user's and computer's score. Scores are updated and updated scores displayed on screen using JavaScript -->
+                    <div id="score-box" class="box">
+                        <div id="score-box-user">
+                            <p>Your score:</p>
+                            <p id="user-score">0</p>
+                        </div>
+                        <div id="score-box-computer">
+                            <p>Computer score:</p>
+                            <p id="computer-score">0</p>
+                        </div>
+                    </div>
+
+                    <!-- Display user and computer choice -->
+                    <div id="result-box" class="box">
+                        <div id="result-box-user">
+                            <p id="user-choice">userChoice</p>
+                        </div>
+                        <div id="result-box-computer">
+                            <p id="computer-choice">computerChoice</p>
+                        </div>
+                        <div id="result-box-result">
+                            <p id="result">resultElement</p>
+                        </div>
+                    </div>
+
+                    <!-- Choice buttons to play game -->
+                    <div class="box button-box">
+                        <button id="rock" class="choice-button"><span>Rock</span> <i
+                                class="fa-regular fa-hand-back-fist"></i></button>
+                        <button id="paper" class="choice-button"><span>Paper</span> <i class="fa-regular fa-hand"></i></button>
+                        <button id="scissors" class="choice-button"><span>Scissors</span> <i
+                                class="fa-regular fa-hand-scissors"></i></button>
+                        <button id="lizard" class="choice-button"><span>Lizard</span> <i
+                                class="fa-regular fa-hand-lizard"></i></button>
+                        <button id="spock" class="choice-button"><span>Spock</span> <i
+                                class="fa-regular fa-hand-spock"></i></button>
+                    </div>
+                </div>
+                
+                <div id="completed-section">
+                    <div id="user-won">
+                        <h2>Congratulations, <span></span>, you won!</h2>
+                        <button class="play-again">Play again</button>
+                    </div>
+                    <div id="user-lost">
+                        <h2>Too bad, <span></span>, you lost this time around. Better luck next time!</h2>
+                        <button class="play-again">Play again</button>
+                    </div>
+                </div>
     </div>
+    </main>
+
+    <script src="https://kit.fontawesome.com/c62380739e.js" crossorigin="anonymous"></script>
+    <script src="assets/js/script.js"></script>
 </body>
+
 </html>
-
-<!--
-
-    Stopped coding along at Video 3 or 4: https://www.youtube.com/watch?v=_LYxkClHnV0&list=PLB6wlEeCDJ5Yyh6P2N6Q_9JijB6v4UejF&index=4
-
--->

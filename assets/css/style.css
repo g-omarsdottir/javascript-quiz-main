@@ -1,0 +1,246 @@
+/* Importing Google Fonts 
+For general text: font-family: "Work Sans", sans-serif;
+For headings and game buttons: font-family: "Play", sans-serif;
+As backup for all text: font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+*/
+@import url("https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* Working styles. To-do: remove when basic structure is styled */
+header {
+    background-color: aquamarine;
+}
+
+/* General style rules */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Work Sans", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+    font-family: "Play", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    font-size: 1.5rem;
+    padding: 0 10px;
+    margin-bottom: 20px;
+}
+
+h1>span {
+    white-space: nowrap;
+}
+
+body {
+    background-color: #f9f5c6;
+}
+
+/* Display full website on large screens without scrolling */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 15px auto;
+    text-align: center;
+    /*justify-content: space-between;*/
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Working styles for landing section: to-do*/
+.box>h2 {
+    margin: 20px;
+}
+
+#landing-section {
+    margin: 10px;
+}
+
+#introduction {
+    margin: 20px;
+    text-align: left;
+}
+
+#instructions {
+    margin: 20px;
+    text-align: left;
+}
+
+#rules {
+    margin: 20px;
+    text-align: left;
+}
+
+#rules>ul {
+    margin-left: 30%;
+    list-style: circle;
+}
+
+/* Username box*/
+form > input {
+    width: 150px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    padding: 5px auto;
+}
+
+.username-box {
+    display: flex;
+    flex-direction: row;
+    text-align: right;
+    flex-wrap: wrap;
+}
+
+/* Scoreboard displaying current user's and computer's score */
+#score-box {
+    background-color: yellow;
+    margin: 20px auto;
+}
+
+#score-box-user {
+    width: 150px;
+    border: 2px groove hotpink;
+    border-radius: 10px;
+    margin-right: 9px;
+    padding: 10px 0;
+}
+
+#score-box-computer {
+    border: 2px groove darkslateblue;
+    width: 150px;
+    border-radius: 10px;
+    padding: 10px 0;
+}
+
+/* Game results area: user and computer choices and result of each round displayed to user */
+
+#result-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+#result-box-user {
+    margin-right: 40px;
+}
+
+#result-box-computer {
+    margin-bottom: 10px;
+}
+
+#result-box-result {
+    width: 80%;
+}
+
+/* Interactive game area: choice buttons for user to play game. Responsive on all device sizes due to flexbox wrap */
+
+#button-box {
+    display: flex;
+    justify-content: space-between;
+    /*height: 50%;*/
+    width: 90%;
+    align-items: flex-end;
+    padding-bottom: 40px;
+}
+
+.choice-button {
+    font-size: 1.5rem;
+    font-family: "Play", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    width: 140px;
+    height: 140px;
+    margin: 5px;
+    padding-top: 5px;
+    display: flex;
+    justify-content: center;
+    /*align-items: flex-start;*/
+    border: 2px solid #060a39;
+    border-radius: 10px;
+}
+
+.choice-button > span {
+    padding-right: 5px;
+}
+
+#rock {
+    background: url(../images/rock.webp) no-repeat bottom / contain white;
+}
+
+#paper {
+    background: url(../images/paper.webp) no-repeat bottom / contain white;
+}
+
+#scissors {
+    background: url(../images/scissors.webp) no-repeat center / contain white;
+}
+
+#lizard {
+    background: url(../images/lizard.webp) no-repeat center / contain white;
+}
+
+#spock {
+    background: url(../images/spock.webp) no-repeat center / contain white;
+}
+
+/* Box shadow for 3D "pressed effect" when buttons are clicked (active) for user feedback */
+.choice-button:active {
+    position: relative;
+    top: -0.1rem;
+    left: -0.1rem;
+    /* Explanation of values: distance of shadow from element - blur/spread of shadow - no additional spread - color. Same for definition of second shadow*/
+    box-shadow: 0.1em 0.1em 0 #fff, 0.2em 0.2em #060a39;
+}
+
+/* Media query: screens ≥ 375px (larger mobile devices) */
+@media screen and (min-width: 768px) {
+    .choice-button {
+        width: 160px;
+        height: 160px;
+        margin: 20px;
+        padding-top: 20px;
+    }
+}
+
+/* Media query: screens ≥ 768px (tablets) */
+@media screen and (min-width: 768px) {
+    h1 {
+        font-size: 1.7rem;
+    }
+
+    .username-box {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+/* Media query: screens ≥992px (laptops, desktops)*/
+@media screen and (min-width: 992px) {
+      .choice-button:hover {
+        font-size: 1.7rem;
+        border: 3px solid #060a39;
+      }
+
+      #submit:hover {
+        background-color: rgba(186, 196, 106, 0.795);
+      }
+
+      #submit:active {  
+      position: relative;
+      top: -0.1rem;
+      left: -0.1rem;
+      /* Explanation of values: distance of shadow from element - blur/spread of shadow - no additional spread - color. Same for definition of second shadow*/
+      box-shadow: 0.1em 0.1em 0 #fff, 0.2em 0.2em #060a39;
+      }
+}
