@@ -202,6 +202,26 @@ form > input {
     box-shadow: 0.1em 0.1em 0 #fff, 0.2em 0.2em #060a39;
 }
 
+.play-button {
+    font-size: 1.5rem;
+    font-family: "Play", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    width: 140px;
+    height: 140px;
+    margin: 5px;
+    padding-top: 5px;
+    display: flex;
+    justify-content: center;
+    /*align-items: flex-start;*/
+    border: 2px solid #060a39;
+    border-radius: 10px;
+    position: relative;
+    top: -0.1rem;
+    left: -0.1rem;
+    /* Explanation of values: distance of shadow from element - blur/spread of shadow - no additional spread - color. Same for definition of second shadow*/
+    box-shadow: 0.1em 0.1em 0 #fff, 0.2em 0.2em #060a39;
+}
+
 /* Media query: screens ≥ 375px (larger mobile devices) */
 @media screen and (min-width: 768px) {
     .choice-button {

@@ -68,7 +68,7 @@ document.getElementById("submit").addEventListener("click", function () {
     );
     return false; // to prevent submission if username is invalid (more than 10 characters)
     // less than 1 character is handled with the required attribute in the html input field for username.
-  }
+  };
   collectUsername();
   playGame();
 });
@@ -190,11 +190,18 @@ function completedGame() {
   } else {
     consolation();
   }
-  // Event listener for play again button
+/*
+// From JungleQuiz Amir
+  const button = document.createElement("button");
+  button.innerHTML = "Play Again";
+  button.classList.add("play-button")
+*/
+}
+
+ // Event listener for play again button
   document.getElementById("play-again").addEventListener("click", function () {
     playGame();
   });
-}
 
 function congratulations() {
   userLost.style.display = "none";
