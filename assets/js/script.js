@@ -104,6 +104,8 @@ function incrementComputerScore() {
 // Function to update the displayed score in the DOM.
 function updateScoreElement(element, score) {
   element.innerHTML = score;
+  console.log("Score element: " + element);
+  console.log("Score value " + score);
 }
 
 // Function to update the displayed user and computer choices in the DOM.
@@ -123,22 +125,39 @@ function updateResultElement(resultElement, result) {
   resultElement.innerHTML = result;
 }
 
-// Functions for actions depending on results of compareChoices
+/*// Functions for actions depending on results of compareChoices
 function userWins() {
   incrementUserScore();
   updateResultElement(result, winMessage);
   console.log(winMessage);
+}*/
+
+const winConditions = {
+  Rock: { Scissors: "crushes", Lizard: "crushes" },
+  Paper: { Rock: "covers", Spock: "disproves" },
+  Scissors: { Paper: "cuts", Lizard: "decapitates" },
+  Lizard: { Spock: "poisons", Paper: "eats" },
+  Spock: { Scissors: "smashes", Rock: "vaporizes" }
+};
+
+function userWins(userChoice, computerChoice) {
+  incrementUserScore();
+  const reason = winConditions[userChoice][computerChoice]; 
+  const resultMessage = userChoice + " " + reason + " " + computerChoice + "!" + "<br>" + " You win!" ;
+  updateResultElement(result, resultMessage); 
 }
 
-function userTies() {
-  updateResultElement(result, tieMessage);
+function userTies(userChoice, computerChoice) {
+  const resultMessage = userChoice + " " + "equals" + " " + computerChoice + "!" + "<br>" + "It's a tie! Everybody wins!"
+  updateResultElement(result, resultMessage);
   console.log(tieMessage);
 }
 
-function userLoses() {
+function userLoses(userChoice, computerChoice) {
   incrementComputerScore();
-  updateResultElement(result, loseMessage);
-  console.log(loseMessage);
+  const reason = winConditions[computerChoice][userChoice]; // Note the switched order
+  const resultMessage = computerChoice + " " + reason + " " + userChoice + "!" + "<br>" + " You lose!";
+  updateResultElement(result, resultMessage); 
 }
 
 // Function to compare choices based on game rules
@@ -190,12 +209,6 @@ function completedGame() {
   } else {
     consolation();
   }
-/*
-// From JungleQuiz Amir
-  const button = document.createElement("button");
-  button.innerHTML = "Play Again";
-  button.classList.add("play-button")
-*/
 }
 
  // Event listener for play again button
