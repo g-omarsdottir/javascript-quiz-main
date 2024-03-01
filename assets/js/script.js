@@ -11,9 +11,14 @@ let userLost = document.getElementById("user-lost");
 const choices = ["Rock", "Paper", "Scissors", "Lizard", "Spock"];
 
 // Outcome variables
-const winMessage = "You win! Yay!";
-const tieMessage = "It's a tie! Everybody wins!";
-const loseMessage = "Yaiks, you lose!";
+const winConditions = {
+  Rock: { Scissors: "crushes", Lizard: "crushes" },
+  Paper: { Rock: "covers", Spock: "disproves" },
+  Scissors: { Paper: "cuts", Lizard: "decapitates" },
+  Lizard: { Spock: "poisons", Paper: "eats" },
+  Spock: { Scissors: "smashes", Rock: "vaporizes" }
+};
+
 
 // Scoreboard variables for functions to increment scores and display updated scores in the DOM
 // Default scores at game start are 0
@@ -57,33 +62,39 @@ document.getElementById("spock").addEventListener("click", function () {
 //
 // Section for collecting username. To-do: place variables with other variables when code successfully completed.
 //Cache element references for performance
-const usernameInput = document.getElementById("username-input"); // Represents the raw input (temporary) value of input element (subject to change as user types). For initial validation of allowed character limit. Is passed as argument to function displayUsername to store and display in DOM.
-const username = document.getElementById("username"); // Stores the validated username for function displayUsername.
+let usernameInput = document.getElementById("username-input"); // Represents the raw input (temporary) value of input element (subject to change as user types). For initial validation of allowed character limit. Is passed as argument to function displayUsername to store and display in DOM.
+let username = document.getElementById("username"); // Stores the validated username for function displayUsername.
+username.textContent = localStorage.getItem(username); // To display username in DOM.
 
+//to-do: less than 1 character  
 // Event listener when user clicks submit username and to validate username
 document.getElementById("submit").addEventListener("click", function () {
-  if (usernameInput.value.length > 10) {
-    alert(
-      "A bit over the top, don't you think? Please choose a username with less than 10 characters."
-    );
-    return false; // to prevent submission if username is invalid (more than 10 characters)
-    // less than 1 character is handled with the required attribute in the html input field for username.
-  };
-  collectUsername();
-  playGame();
+  console.log("Event listener triggered - placement above if statement");
+  if (usernameInput.value.length > 10 || usernameInput.value.length < 1) {
+    alert("Please choose a username between 1 and 10 characters.");
+    return false; // to prevent submission if username is invalid (less than 1 or more than 10 characters)
+    // less than 1 character is also handled with the required attribute in the html input field for username. Doesn't work when sections are sequentally displayed or hidden.
+  } else {
+    console.log("Event listener triggered - placement after if statement");
+    collectUsername();
+    gameSection.style.display = "block";
+    //playGame();
+    console.log("Submit button clicked");
+    //setTimeout(function() {
+      //  document.getElementById("submit-form").submit(); 
+    //}, 500);  // 500 milliseconds delay of submitting username and start game as visual feedback to user. Doesn't work.
+  }
 });
 
-// Function to trigger the DOM display and storage of the validated username
-function collectUsername() {
-  displayUsername();
-}
-
 // Function for DOM display and manage local storage of collected username in DOM.
-function displayUsername() {
+function collectUsername() {
   localStorage.setItem(username, usernameInput.value); // To store the username in local storage
-  username.innerHTML = localStorage.getItem(username); // To display username in DOM.
+  console.log("username to be displayed:", "localStorage.getItem(username)");
+  console.log("username element:", username);
 }
 
+
+ 
 // Generate random computer choice
 function generateComputerChoice() {
   return choices[Math.floor(Math.random() * choices.length)];
@@ -101,7 +112,7 @@ function incrementComputerScore() {
 }
 
 //
-// Function to update the displayed score in the DOM.
+// Function to update the displayed score in the DOM. Using "element" provides flexibility and concise code, updating both user and computer score at once.
 function updateScoreElement(element, score) {
   element.innerHTML = score;
   console.log("Score element: " + element);
@@ -125,39 +136,24 @@ function updateResultElement(resultElement, result) {
   resultElement.innerHTML = result;
 }
 
-/*// Functions for actions depending on results of compareChoices
-function userWins() {
-  incrementUserScore();
-  updateResultElement(result, winMessage);
-  console.log(winMessage);
-}*/
-
-const winConditions = {
-  Rock: { Scissors: "crushes", Lizard: "crushes" },
-  Paper: { Rock: "covers", Spock: "disproves" },
-  Scissors: { Paper: "cuts", Lizard: "decapitates" },
-  Lizard: { Spock: "poisons", Paper: "eats" },
-  Spock: { Scissors: "smashes", Rock: "vaporizes" }
-};
-
+// Functions for actions depending on results of compareChoices, referencing the game rules and displaying the detailled game results  in the DOM.
 function userWins(userChoice, computerChoice) {
   incrementUserScore();
   const reason = winConditions[userChoice][computerChoice]; 
-  const resultMessage = userChoice + " " + reason + " " + computerChoice + "!" + "<br>" + " You win!" ;
-  updateResultElement(result, resultMessage); 
+  const resultMessageWin = userChoice + " " + reason + " " + computerChoice + "!" + "<br>" + " You win!" ;
+  updateResultElement(result, resultMessageWin); 
 }
 
 function userTies(userChoice, computerChoice) {
-  const resultMessage = userChoice + " " + "equals" + " " + computerChoice + "!" + "<br>" + "It's a tie! Everybody wins!"
-  updateResultElement(result, resultMessage);
-  console.log(tieMessage);
+  const resultMessageTie = userChoice + " " + "equals" + " " + computerChoice + "!" + "<br>" + "It's a tie! Everybody wins!"
+  updateResultElement(result, resultMessageTie);
 }
 
 function userLoses(userChoice, computerChoice) {
   incrementComputerScore();
-  const reason = winConditions[computerChoice][userChoice]; // Note the switched order
-  const resultMessage = computerChoice + " " + reason + " " + userChoice + "!" + "<br>" + " You lose!";
-  updateResultElement(result, resultMessage); 
+  const reason = winConditions[computerChoice][userChoice]; // Same as userWins but in switched order.
+  const resultMessageLose = computerChoice + " " + reason + " " + userChoice + "!" + "<br>" + " You lose!";
+  updateResultElement(result, resultMessageLose); 
 }
 
 // Function to compare choices based on game rules
@@ -190,15 +186,16 @@ function compareChoices(userChoice) {
   }
 }
 
+
 function playGame() {
   //userScorecore: 0;
   //computerScore: 0;
   landingSection.style.display = "none";
   gameCompletion.style.display = "none";
   gameSection.style.display = "block";
-  if (userScore < 11 || computerScore < 11) {
+  /*if (userScore < 11 || computerScore < 11) {
     completedGame();
-  }
+  }*/
 }
 
 function completedGame() {
@@ -209,13 +206,16 @@ function completedGame() {
   } else {
     consolation();
   }
+  console.log("playGame");
 }
 
+/*
  // Event listener for play again button
   document.getElementById("play-again").addEventListener("click", function () {
     playGame();
   });
-
+*/
+/*
 function congratulations() {
   userLost.style.display = "none";
   updateScoreElement(userScoreElement);
@@ -224,3 +224,4 @@ function congratulations() {
 function consolation() {
   userWon.style.display = "none";
 }
+*/

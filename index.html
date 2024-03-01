@@ -102,17 +102,17 @@
 
 
                 <!-- USERNAME -->
-                <div>
-                    <p id="username">username</p>
-                </div>
+
                 <div class="box">
                     <div class="username-box">
-                        <form>
+                        <form id="username-form">
                             <label for="username-input">Username: </label>
                             <input type="text" placeholder="Enter Username" name="username" id="username-input"
                                 required>
                             <br>
-                            <input type="submit" id="submit" class="play-button" value="Submit & Play Game">
+                            <button id="submit" type="button">Submit & Play Game</button>
+                            
+                            <!-- To-do: change to button <input type="submit" id="submit" class="play-button" value="Submit & Play Game">-->
                         </form>
                     </div>
                 </div>
@@ -130,6 +130,10 @@
                         <p>Computer score:</p>
                         <p id="computer-score">0</p>
                     </div>
+                </div>
+<!-- Testing username storage -->
+                <div>
+                    <p id="username">username</p>
                 </div>
 
                 <!-- Display user and computer choice -->
