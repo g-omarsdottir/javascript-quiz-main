@@ -25,12 +25,12 @@ h2,
 h3 {
     font-family: "Play", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
         "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        margin: 20px auto;
 }
 
 h1 {
     font-size: 1.5rem;
     padding: 0 10px;
-    margin-bottom: 20px;
 }
 
 h1>span {
@@ -38,7 +38,7 @@ h1>span {
 }
 
 body {
-    background-color: #ebfacf;
+    background-color: #f9f5c6;
 }
 
 /* Display full website on large screens without scrolling */
@@ -48,7 +48,7 @@ body {
     min-height: 100vh;
     margin: 15px auto;
     text-align: center;
-    /*justify-content: space-between;*/
+    justify-content: space-between;
 }
 
 .box {
@@ -57,48 +57,58 @@ body {
     flex-wrap: wrap;
 }
 
-/* Working styles for landing section: to-do*/
-.box>h2 {
-    margin: 20px;
-}
-
+/* Landing page section */
 #landing-section {
-    margin: 10px;
+    margin: auto 20px;
 }
 
-#introduction {
-    margin: 20px;
+#landing-section p {
     text-align: left;
+    margin-bottom: 10px;
 }
 
-#instructions {
-    margin: 20px;
-    text-align: left;
-}
-
-#rules {
-    margin: 20px;
-    text-align: left;
-}
-
-#rules>ul {
+#rules > ul {
     margin-left: 40px;
     list-style: circle;
+    text-align: left;
+    line-height: 1.5;
 }
 
 /* Username box*/
-form > input {
-    width: 150px;
-    margin-left: 5px;
-    margin-bottom: 5px;
-    padding: 5px auto;
-}
-
-.username-box {
+#username-box {
     display: flex;
     flex-direction: row;
     text-align: right;
     flex-wrap: wrap;
+    border: 2px groove #7B8246;
+    border-radius: 10px;
+    padding: 20px 10px;
+}
+
+#username-input {
+    width: 160px;
+    line-height: 1.5;
+    font-size: 1em;
+}
+
+#submit {
+    width: 160px;
+    margin: 5px auto;
+    padding: 20px auto;
+    background: rgba(217, 238, 62, 0.719);
+    border: 2px solid #060a39;
+    border-radius: 5px;
+    line-height: 1.5;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+#submit:active {
+    position: relative;
+    top: -0.1rem;
+    left: -0.1rem;
+    /* Explanation of values: distance of shadow from element - blur/spread of shadow - no additional spread - color. Same for definition of second shadow*/
+    box-shadow: 0.1em 0.1em 0 #fff, 0.2em 0.2em #060a39;
 }
 
 /* Scoreboard displaying current user's and computer's score */
@@ -195,26 +205,6 @@ form > input {
 
 /* Box shadow for 3D "pressed effect" when buttons are clicked (active) for user feedback */
 .choice-button:active {
-    position: relative;
-    top: -0.1rem;
-    left: -0.1rem;
-    /* Explanation of values: distance of shadow from element - blur/spread of shadow - no additional spread - color. Same for definition of second shadow*/
-    box-shadow: 0.1em 0.1em 0 #fff, 0.2em 0.2em #060a39;
-}
-
-.play-button {
-    font-size: 1.5rem;
-    font-family: "Play", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-    width: 140px;
-    height: 140px;
-    margin: 5px;
-    padding-top: 5px;
-    display: flex;
-    justify-content: center;
-    /*align-items: flex-start;*/
-    border: 2px solid #060a39;
-    border-radius: 10px;
     position: relative;
     top: -0.1rem;
     left: -0.1rem;
